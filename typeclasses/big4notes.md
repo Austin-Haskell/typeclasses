@@ -40,4 +40,29 @@ Another variety of functor. This time the `(a -> b)` function is itself embedded
 
 # Monad
 
-Yet another variety of functor (there are many, FWIW)
+Yet another variety of functor (there are many).
+
+```haskell
+class Functor f => Applicative (f :: * -> *) where
+  pure :: a -> f a
+  (<*>) :: f (a -> b) -> f a -> f b
+  {-# MINIMAL pure, (<*>) #-}
+```
+
+- `Functor` is a superclass of `Applicative` so the `f` type must be a `Functor` instance.
+- `pure` lifts a value into the `Applicative` context.  
+- `(<*>)` is similar to `fmap` except now the `(a -> b)` function is also embedded in some structure. All the `f` types have to be the same type, so 
+
+
+# Monad
+
+Yet another functor (there are many; these are just the three most common/important). The key difference with `Monad` is that now the `(a -> b)` function is an `(a -> f b)` so we're getting another layer of type structure not *outside* the function, as in `Applicative`, but within it. 
+
+```haskell
+class Applicative m => Monad (m :: * -> *) where
+  (>>=) :: m a -> (a -> m b) -> m b
+  {-# MINIMAL (>>=) #-}
+```  
+
+- `Applicative` is a superclass of `Monad.`
+- The order of arguments in the standard `bind` operator (above) is the opposite of how they appear in `(<*>)` and `fmap`. The difference between `f a` in `Functor` and `m a` in `Monad` is not relevant; they're just variables, albeit chosen to have some mnemonic value. 
