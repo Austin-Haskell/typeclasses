@@ -38,10 +38,6 @@ class Functor (f :: * -> *) where
 
 Another variety of functor. This time the `(a -> b)` function is itself embedded in an `f` data structure. So, for example, we're applying a list of functions to a list of values to return a list of results.
 
-# Monad
-
-Yet another variety of functor (there are many).
-
 ```haskell
 class Functor f => Applicative (f :: * -> *) where
   pure :: a -> f a

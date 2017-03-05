@@ -63,7 +63,7 @@ data Two a b = Two a b deriving (Eq, Show)
 instance Functor (Two a) where
   fmap f (Two a b) = Two a (f b)
 
-instance Monoid a => Applicative (Two a) where
+instance Monoid a => Applicative (Two a) where -- ~~ Two Char b
   pure x = Two mempty x
   (<*>) (Two a f) (Two a' b) = Two (mappend a a') (f b)
 

@@ -1,3 +1,5 @@
+
+
 -- Applicatives
 
 -- lists (default)
@@ -24,3 +26,4 @@ liftA2 (+) (Just 4) (Just 6)
 ("julie", (+4)) <*> (" rocks", 5)
 
 (Two "julie" (+4)) <*> (Two " rocks" 5)
+
